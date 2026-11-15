@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: weld_inspection_api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_NAME=Welding Quality Detection API
+      - DEBUG=false
+      - MODEL_PATH=runs/detect/YOLO Weld Detection project/weld_yolo_training/weights/best.pt
+      - MODEL_VERSION=weld-yolo-v1
+      - DEFECT_CONFIDENCE_THRESHOLD=0.50
+      - UNCERTAINTY_THRESHOLD=0.35
+      - DATABASE_URL=sqlite+aiosqlite:///./backend/weld_inspections.db
+      - CORS_ORIGINS=["*"]
+    volumes:
+      - ./backend/uploads:/app/backend/uploads
+      - ./backend/weld_inspections.db:/app/backend/weld_inspections.db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

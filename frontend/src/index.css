@@ -1,0 +1,198 @@
+/* ==========================================================================
+   WELD-AI MODERN INDUSTRIAL DESIGN SYSTEM
+   Cyberpunk / Aerospace Industrial Inspection Theme
+   ========================================================================== */
+
+:root {
+  --bg-primary: #070b13;
+  --bg-secondary: #0d1527;
+  --bg-card: rgba(15, 23, 42, 0.7);
+  --bg-card-hover: rgba(30, 41, 59, 0.85);
+  --bg-card-solid: #0f172a;
+  
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-active: rgba(56, 189, 248, 0.3);
+  --border-accent: #38bdf8;
+
+  /* Status Colors */
+  --color-good: #10b981;
+  --color-good-glow: rgba(16, 185, 129, 0.25);
+  --color-bad: #f43f5e;
+  --color-bad-glow: rgba(244, 63, 94, 0.25);
+  --color-uncertain: #f59e0b;
+  --color-uncertain-glow: rgba(245, 158, 11, 0.25);
+  
+  --color-cyan: #38bdf8;
+  --color-cyan-glow: rgba(56, 189, 248, 0.3);
+
+  /* Text Colors */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  /* Fonts */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Transitions & Shadows */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-full: 9999px;
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --shadow-neon-cyan: 0 0 20px rgba(56, 189, 248, 0.35);
+  --shadow-neon-good: 0 0 20px rgba(16, 185, 129, 0.35);
+  --shadow-neon-bad: 0 0 20px rgba(244, 63, 94, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.05) 0%, transparent 45%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0b1120;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Glassmorphism Containers */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-glass);
+}
+
+.glass-panel-hover {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-panel-hover:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-active);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5), 0 0 15px rgba(56, 189, 248, 0.15);
+}
+
+/* Typography Utility */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* Status Badges */
+.badge-good {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+}
+
+.badge-bad {
+  background: rgba(244, 63, 94, 0.15);
+  color: #fb7185;
+  border: 1px solid rgba(244, 63, 94, 0.4);
+  box-shadow: 0 0 12px rgba(244, 63, 94, 0.2);
+}
+
+.badge-uncertain {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
+}
+
+.badge-cyan {
+  background: rgba(56, 189, 248, 0.12);
+  color: #7dd3fc;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+/* Industrial Scanner Radar Line */
+@keyframes scanline {
+  0% {
+    top: 0%;
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0.8;
+  }
+}
+
+.scanner-beam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #38bdf8, #00f2fe, #38bdf8, transparent);
+  box-shadow: 0 0 15px #38bdf8, 0 0 30px #00f2fe;
+  animation: scanline 2.2s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Pulse Animation */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+}
+
+.pulse-dot {
+  animation: pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* App Layout Grid */
+.app-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px 32px;
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 16px;
+  }
+}

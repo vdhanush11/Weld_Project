@@ -1,0 +1,57 @@
+
+# Python environment
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# YOLO training outputs
+runs/
+wandb/
+*.cache
+
+# Logs and temporary files
+*.log
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Node.js dependencies
+**/node_modules/
+
+# Gradle generated files
+**/.gradle/
+**/build/
+
+# Frontend build output
+**/dist/
+**/.vite/
+
+# YOLO training outputs
+runs/
+wandb/
+*.cache
+
+# Logs and temporary files
+*.log
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
